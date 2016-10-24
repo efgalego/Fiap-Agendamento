@@ -1,4 +1,4 @@
-package fiap.scj.agendamento.resources;
+package fiap.scj.agendamento.repositorios;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,10 +12,11 @@ import fiap.scj.agendamento.to.AgendamentoTO;
  * @author Eduardo Galego
  */
 @Named
-public class HorariosResource {
+public class HorariosRepositorio {
 	
 	private static Collection<String> listaHorariosLivres;
 	private static Collection<AgendamentoTO> listaAgendamentos;
+	private static Integer proxProtocolo = 1000;
 
 	static {
 		listaHorariosLivres = new ArrayList<String>();
@@ -50,7 +51,7 @@ public class HorariosResource {
 	 */
 	public void agendar(String horario, String nomeCidadao) {
 		listaHorariosLivres.remove(horario);
-		listaAgendamentos.add(new AgendamentoTO(horario, nomeCidadao));
+		listaAgendamentos.add(new AgendamentoTO(horario, nomeCidadao, String.format("%07d", proxProtocolo++)));
 	}
 	
 	/**

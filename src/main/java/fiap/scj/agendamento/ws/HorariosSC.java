@@ -10,19 +10,19 @@ import javax.ws.rs.core.Response;
 
 import org.springframework.stereotype.Component;
 
-import fiap.scj.agendamento.resources.HorariosResource;
+import fiap.scj.agendamento.repositorios.HorariosRepositorio;
 
 @Component
 @Path("/horarios")
 public class HorariosSC {
 	
 	@Inject
-	private HorariosResource horarioResource;
+	private HorariosRepositorio horarioRepositorio;
 	
 	@GET
 	@Produces("application/json")
 	public Response listarHorariosLivres() {
-		Collection<String> horariosLivres = horarioResource.listarHorariosLivres();
+		Collection<String> horariosLivres = horarioRepositorio.listarHorariosLivres();
 		return Response.ok(horariosLivres).build();
 	}
 }

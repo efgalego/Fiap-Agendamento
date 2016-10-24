@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response;
 
 import org.springframework.stereotype.Component;
 
-import fiap.scj.agendamento.resources.HorariosResource;
+import fiap.scj.agendamento.repositorios.HorariosRepositorio;
 import fiap.scj.agendamento.to.AgendamentoTO;
 
 @Component
@@ -21,24 +21,24 @@ import fiap.scj.agendamento.to.AgendamentoTO;
 public class AgendamentoSC {
 	
 	@Inject
-	private HorariosResource horarioResource;
+	private HorariosRepositorio horarioRepositorio;
 	
 	@GET
 	@Produces("application/json")
 	public Response listarAgendamentos() {
-		Collection<AgendamentoTO> horariosLivres = horarioResource.listarAgendamento();
+		Collection<AgendamentoTO> horariosLivres = horarioRepositorio.listarAgendamento();
 		return Response.ok(horariosLivres).build();
 	}
 	
 	@POST
 	public Response agendar(@QueryParam("horario") String horario, @QueryParam("nomeCidadao") String nomeCidadao) {
-		horarioResource.agendar(horario, nomeCidadao);
+		horarioRepositorio.agendar(horario, nomeCidadao);
 		return Response.noContent().build();
 	}
 	
 	@DELETE
 	public Response cancelarAgendamento(@QueryParam("horario") String horario, @QueryParam("nomeCidadao") String nomeCidadao) {
-		horarioResource.cancelarAgendamento(horario, nomeCidadao);
+		horarioRepositorio.cancelarAgendamento(horario, nomeCidadao);
 		return Response.noContent().build();
 	}
 }
