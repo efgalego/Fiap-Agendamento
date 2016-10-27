@@ -49,9 +49,11 @@ public class HorariosRepositorio {
 	 * @param horario Horário.
 	 * @param nomeCidadao Nome do cidadão.
 	 */
-	public void agendar(String horario, String nomeCidadao) {
+	public String agendar(String horario, String nomeCidadao) {
+		String numeroProtocolo = String.format("%07d", proxProtocolo++);		
 		listaHorariosLivres.remove(horario);
-		listaAgendamentos.add(new AgendamentoTO(horario, nomeCidadao, String.format("%07d", proxProtocolo++)));
+		listaAgendamentos.add(new AgendamentoTO(horario, nomeCidadao, numeroProtocolo));
+		return numeroProtocolo;
 	}
 	
 	/**

@@ -25,15 +25,15 @@ public class AgendamentoSC {
 	
 	@GET
 	@Produces("application/json")
-	public Response listarAgendamentos() {
+	public Response listarTodosAgendamentos() {
 		Collection<AgendamentoTO> horariosLivres = horarioRepositorio.listarAgendamento();
 		return Response.ok(horariosLivres).build();
 	}
 	
 	@POST
 	public Response agendar(@QueryParam("horario") String horario, @QueryParam("nomeCidadao") String nomeCidadao) {
-		horarioRepositorio.agendar(horario, nomeCidadao);
-		return Response.noContent().build();
+		String numeroProtocolo = horarioRepositorio.agendar(horario, nomeCidadao);
+		return Response.ok(numeroProtocolo).build();
 	}
 	
 	@DELETE
