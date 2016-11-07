@@ -1,0 +1,10 @@
+package fiap.scj.agendamento.regras
+
+import fiap.scj.agendamento.to.ServicoCidadaoTO
+
+rule "regraBasica"
+  when
+  	$cidadaoServico : ServicoCidadaoTO( idadeCidadao < 18 )
+  then
+  	System.out.println("Cidadao com menor idade: " + $cidadaoServico.getNomeCidadao() );
+end
