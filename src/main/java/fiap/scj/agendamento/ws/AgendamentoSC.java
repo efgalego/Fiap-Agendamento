@@ -44,9 +44,9 @@ public class AgendamentoSC {
 	}
 	
 	@DELETE
-	public Response cancelarAgendamento(@QueryParam("protocolo") String protocolo, @QueryParam("nomeCidadao") String nomeCidadao) {
+	public Response cancelarAgendamento(@QueryParam("protocolo") String protocolo) {
 		try {
-			repositorio.cancelarAgendamento(protocolo, nomeCidadao);
+			repositorio.cancelarAgendamento(protocolo);
 		} catch (NaoEncontradoException e) {
 			return Response.status(Status.NOT_FOUND).entity(e.getMessage()).build();
 		}

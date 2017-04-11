@@ -53,7 +53,7 @@ public class AgendamentoRepositorio {
 	 */
 	public String agendar(String horario, String nomeCidadao) throws NaoEncontradoException {
 		if (!listaHorariosLivres.remove(horario)) {
-			throw new NaoEncontradoException("Horário");
+			throw new NaoEncontradoException("Hor�rio");
 		}
 		
 		String numeroProtocolo = String.format("%07d", proxProtocolo++);
@@ -64,10 +64,9 @@ public class AgendamentoRepositorio {
 	/**
 	 * Cancela um agendamento já efetuado.
 	 * @param horario Horário do agendamento.
-	 * @param nomeCidadao Nome do cidadão.
 	 * @throws NaoEncontradoException Exceção lançada caso não encontrada a agenda com o número de protocolo informado.
 	 */
-	public void cancelarAgendamento(String protocolo, String nomeCidadao) throws NaoEncontradoException {
+	public void cancelarAgendamento(String protocolo) throws NaoEncontradoException {
 		AgendamentoTO remover = buscarAgendaPorProtocolo(protocolo);
 		
 		if (remover == null) {
